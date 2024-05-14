@@ -4,23 +4,25 @@
 using namespace std;
 
 class NumberGuesser {
+
 private:
-    int secretNumber;
+    int secret_num;
+
 public:
     NumberGuesser() {
-        // Initialize random seed
+        // random seed
         srand(time(0));
-        // Generate random number between 1 and 100
-        secretNumber = rand() % 100 + 1;
+        // Generating random numbers between 1 and 100
+        secret_num = rand() % 100 + 1;
     }
 
-    void guessNumber() {
+    void guess_number() {
         int guess;
         cout << "Guess the number (between 1 and 100): ";
         cin >> guess;
 
-        while (guess != secretNumber) {
-            if (guess < secretNumber) {
+        while (guess != secret_num) {
+            if (guess < secret_num) {
                 cout << "Too low! Guess again: "<<endl;
             } else {
                 cout << "Too high! Guess again: "<<endl;
@@ -28,12 +30,12 @@ public:
             cin >> guess;
         }
 
-        cout << "Congratulations! You guessed the number " << secretNumber << " correctly!!!" << endl;
+        cout << "Congratulations! You have guessed the right number " << secret_num << " correctly!!!" << endl;
     }
 };
 
 int main() {
     NumberGuesser game;
-    game.guessNumber();
+    game.guess_number();
     return 0;
 }

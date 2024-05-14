@@ -4,7 +4,7 @@
 using namespace std;
 
 // For displaying the board
-void displayBoard(const vector<vector<char>>& board) {
+void displayingBoard(const vector<vector<char>>& board) {
     cout << "  1 2 3" << endl;
     for (int i = 0; i < 3; ++i) {
         cout << i + 1 << " ";
@@ -16,7 +16,7 @@ void displayBoard(const vector<vector<char>>& board) {
 }
 
 // Who won the match
-bool checkWin(const vector<vector<char>>& board, char player) {
+bool check_win(const vector<vector<char>>& board, char player) {
     // Check rows
     for (int i = 0; i < 3; ++i) {
         if (board[i][0] == player && board[i][1] == player && board[i][2] == player)
@@ -35,7 +35,7 @@ bool checkWin(const vector<vector<char>>& board, char player) {
 }
 
 // if the game is a draw
-bool checkDraw(const vector<vector<char>>& board) {
+bool check_draw(const vector<vector<char>>& board) {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             if (board[i][j] == ' ')
@@ -46,17 +46,17 @@ bool checkDraw(const vector<vector<char>>& board) {
 }
 
 int main() {
-    char currentPlayer = 'X';
+    char Player = 'X';
     vector<vector<char>> board(3, vector<char>(3, ' ')); // Initialize empty board
 
     bool gameOver = false;
     while (!gameOver) {
-        // Display the board
-        displayBoard(board);
+        // Displaying the board
+        displayingBoard(board);
 
-        // Prompt the current player to enter their move
+        // Prompt the player to enter their move
         int row, col;
-        cout << "Player " << currentPlayer << "'s turn. Enter row and column (1-3): ";
+        cout << "Player " << Player << "'s turn. Enter row and column (1-3): ";
         cin >> row >> col;
 
         // Check if the input is valid
@@ -66,23 +66,23 @@ int main() {
         }
 
         // Update the board with the player's move
-        board[row - 1][col - 1] = currentPlayer;
+        board[row - 1][col - 1] = Player;
 
         // Check for win
-        if (checkWin(board, currentPlayer)) {
-            displayBoard(board);
-            cout << "Player " << currentPlayer << " wins!" << endl;
+        if(check_win(board, Player)) {
+            displayingBoard(board);
+            cout << "Player " << Player << " wins!" << endl;
             gameOver = true;
         }
         // Check for draw
-        else if (checkDraw(board)) {
-            displayBoard(board);
+        else if (check_draw(board)) {
+            displayingBoard(board);
             cout << "It's a draw!" << endl;
             gameOver = true;
         }
-        // Switch players
+        // Switching players
         else {
-            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            Player = (Player == 'X') ? 'O' : 'X';
         }
     }
 
